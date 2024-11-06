@@ -2,6 +2,14 @@ import numpy as np
 def gaussian_elimination(A, b):
     n = len(b)
     for i in range(n):
+        if A[i, i] == 0:
+            # find the first row with non-zero element in the i-th column and swap
+            for j in range(i+1, n):
+                if A[j, i] != 0:
+                    for k in range(i, n):
+                        A[i, k], A[j, k] = A[j, k], A[i, k]
+                    b[i], b[j] = b[j], b[i]
+                    break
         for j in range(i+1, n):
             factor = A[j, i] / A[i, i]
             A[j, i:] -= factor * A[i, i:]
@@ -10,7 +18,8 @@ def gaussian_elimination(A, b):
     for i in range(n-1, -1, -1):
         x[i] = (b[i] - A[i, i+1:] @ x[i+1:]) / A[i, i]
     return x
-    
+
+
 def gauss_jacobi(A, b, x0, tol, max_iter):
     n = len(b)
     x = np.copy(x0)
@@ -52,8 +61,3 @@ def gauss_seidel(A, b, x0, tol, max_iter):
             return x_new,k
         x = np.copy(x_new)
 
-# x_seidel,k_seidel = gauss_seidel(A, b, x0, tol, max_iter)
-
-# print(x_seidel,k_seidel)
-
-print(np.linalg.norm([4,3]))
