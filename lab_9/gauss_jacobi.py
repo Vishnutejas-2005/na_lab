@@ -34,15 +34,15 @@ def gauss_jacobi(A, b, x0, tol, max_iter):
         if (np.linalg.norm(x_new - x,ord=np.inf)/np.linalg.norm(x_new,ord=np.inf)) < tol:
             return x_new,k
         x = np.copy(x_new)
-# check if the method converges
-# 2*2 matrix
-A = np.array([[2, 1], [5, 7]])
-b = np.array([6, 24])
-x0 = np.array([0, 0])
-tol = 1e-10
-max_iter = 100
-x,k = gauss_jacobi(A, b, x0, tol, max_iter)
-print(x,k)
+# # check if the method converges
+# # 2*2 matrix
+# A = np.array([[2, 1], [5, 7]])
+# b = np.array([6, 24])
+# x0 = np.array([0, 0])
+# tol = 1e-10
+# max_iter = 100
+# x,k = gauss_jacobi(A, b, x0, tol, max_iter)
+# print(x,k)
 
 def gauss_seidel(A, b, x0, tol, max_iter):
     n = len(b)
@@ -60,4 +60,24 @@ def gauss_seidel(A, b, x0, tol, max_iter):
         if (np.linalg.norm(x_new - x,ord=np.inf)/np.linalg.norm(x_new,ord=np.inf)) < tol:
             return x_new,k
         x = np.copy(x_new)
+
+
+A = np.array([[4,-1,1], [2,5,2], [1,2,4]])
+b = np.array([8,3,11])
+# cast the matrix to float
+A = A.astype(float)
+b = b.astype(float)
+
+print(gaussian_elimination(A,b))
+
+
+A2 = np.array([[10,-1,2,0], [-1,11,-1,3], [2,-1,10,-1],[0,3,-1,8]])
+b2 = np.array([6,25,-11,15])
+# cast the matrix to float
+A2 = A2.astype(float)
+b2 = b2.astype(float)
+
+print(gauss_jacobi(A2,b2,[0,0,0,0],1e-3,100))
+
+
 
