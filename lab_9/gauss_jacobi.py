@@ -126,16 +126,3 @@ print("gauss_jacobi")
 print(gauss_jacobi(A,b,np.zeros(n),1e-5,10000000))
 print(A)
 print(b)
-# print("gauss_seidel")
-# print(gauss_seidel(A,b,np.zeros(n),1e-3,100))
-# print(A)
-# print(b)
-
-# h = (2-a)/(n+1)
-# x = np.linspace(a+h,2-h,n)
-# print("actual solution")
-# for i in x:
-#     print(actual_solution(i))
-
-# # print(A)
-# print(b)
